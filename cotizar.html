@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizar Pedido | Ali & Val</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS BASE Y VARIABLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { 
+            --amarillo: #ffbe33; 
+            --amarillo-oscuro: #d4a017; 
+            --negro-puro: #000;
+            --oscuro-fondo: #0c0c0c;
+        }
+        body { font-family: 'Poppins', sans-serif; background-color: #f9f9f9; color: #1a1a1a; }
+
+        /* --- NAVBAR UNIFICADA (IDÉNTICA A INICIO) --- */
+        .navbar {
+            background-color: var(--negro-puro);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { 
+            color: white; 
+            font-size: 30px; 
+            font-weight: 700; 
+            font-style: italic; 
+            text-decoration: none; 
+            letter-spacing: 1px;
+        }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600;
+            text-transform: uppercase; 
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--amarillo); }
+        
+        .btn-nav-cotizar {
+            background-color: var(--amarillo);
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700 !important;
+        }
+
+        /* --- SECCIÓN COTIZACIÓN --- */
+        .quote-section {
+            margin-top: 120px;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quote-header { text-align: center; max-width: 700px; margin-bottom: 40px; }
+        .quote-header h1 { 
+            font-size: 40px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-weight: 600; 
+            margin-bottom: 15px;
+            color: var(--negro-puro);
+        }
+        .quote-header p { color: #666; font-size: 15px; line-height: 1.6; }
+
+        /* --- FORMULARIO ESTILO PREMIUM --- */
+        .form-card {
+            background: #111; /* Fondo oscuro para el formulario */
+            width: 100%;
+            max-width: 850px;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: span 2; }
+
+        label { 
+            color: var(--amarillo-oscuro); 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+        }
+
+        input, select, textarea {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #444;
+            padding: 12px 5px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus { border-bottom: 1px solid var(--amarillo); }
+        select option { background: #111; color: white; }
+
+        /* --- BOTÓN DE ENVÍO --- */
+        .btn-submit {
+            margin-top: 40px;
+            background-color: var(--amarillo);
+            color: black;
+            border: none;
+            padding: 18px 60px;
+            border-radius: 35px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(255, 190, 51, 0.3);
+        }
+
+        .btn-submit:hover {
+            background-color: #fff;
+            color: var(--negro-puro);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- FOOTER UNIFICADO --- */
+        footer { 
+            background: var(--negro-puro); 
+            color: #555; 
+            text-align: center; 
+            padding: 50px 20px; 
+            font-size: 11px; 
+            letter-spacing: 2px; 
+            margin-top: 60px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .quote-header h1 { font-size: 28px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .form-card { padding: 30px 20px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="inicio.html" class="logo">Ali & Val</a>
+            <nav class="nav-links">
+                <a href="inicio.html">INICIO</a>
+                <a href="menu.html">MENÚ</a>
+                <a href="cotizar.html" class="btn-nav-cotizar">COTIZAR</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="quote-section">
+        <div class="quote-header">
+            <h1>Cotiza tu Evento</h1>
+            <p>Diseñaremos un menú a tu medida. Completa los campos y envíanos tu solicitud; nos pondremos en contacto contigo vía WhatsApp a la brevedad.</p>
+        </div>
+
+        <form class="form-card" id="whatsappForm" autocomplete="off">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nombre Completo *</label>
+                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Teléfono de Contacto *</label>
+                    <input type="tel" id="telefono" placeholder="55 1234 5678" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Servicio *</label>
+                    <select id="servicio" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="Almuerzos Individuales">Almuerzos Individuales</option>
+                        <option value="Taquiza a domicilio">Taquiza a domicilio</option>
+                        <option value="Birria / Pozole para reuniones">Birria / Pozole para reuniones</option>
+                        <option value="Banquete para Evento">Banquete para Evento</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Número de Personas</label>
+                    <input type="number" id="personas" placeholder="Ej. 20" min="1">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Ubicación del Evento</label>
+                    <input type="text" id="ubicacion" placeholder="Ej. Col. San Juanicó, CDMX">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>¿Qué platillos o detalles te interesan? *</label>
+                    <textarea id="interes" rows="4" placeholder="Cuéntanos más sobre tu idea..." required></textarea>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" class="btn-submit">Enviar a WhatsApp</button>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        Ali & Val Gourmet Delights | México 2026 | Ciudad de México
+    </footer>
+
+    <script>
+    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const servicio = document.getElementById('servicio').value;
+        const personas = document.getElementById('personas').value || "No especificado";
+        const ubicacion = document.getElementById('ubicacion').value || "No especificada";
+        const interes = document.getElementById('interes').value;
+
+        const numeroEnvio = "525582190166";
+
+        const textoMensaje = `*NUEVA COTIZACIÓN - ALI & VAL*\n` +
+                             `------------------------------\n` +
+                             `*Nombre:* ${nombre}\n` +
+                             `*Teléfono:* ${telefono}\n` +
+                             `*Servicio:* ${servicio}\n` +
+                             `*Personas:* ${personas}\n` +
+                             `*Ubicación:* ${ubicacion}\n` +
+                             `*Interés:* ${interes}\n` +
+                             `------------------------------`;
+
+        const mensajeCodificado = encodeURIComponent(textoMensaje);
+        window.open(`https://wa.me/${numeroEnvio}?text=${mensajeCodificado}`, '_blank');
+    });
+    </script>
+
+</body>
+</html>

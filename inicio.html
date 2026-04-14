@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali & Val | Gourmet Delights</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* --- ESTILOS BASE (De tu código original) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #1a1a1a; color: white; }
+        
+        /* Definimos tus colores como variables para reutilizar */
+        :root {
+            --amarillo: #ffbe33;
+            --oscuro-card: #222831; /* Un gris un poco más claro para las tarjetas */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- NAVBAR (Mismos estilos de tu código) --- */
+        .navbar {
+            background-color: black;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { color: white; font-size: 24px; font-weight: 700; font-style: italic; text-decoration: none; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 25px; font-size: 13px; text-transform: uppercase; }
+        
+        .btn-yellow {
+            background-color: var(--amarillo);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: none;
+            text-decoration: none;
+        }
+
+        /* --- HERO SECTION (De tu código original) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: left;
+        }
+        .hero-content { max-width: 700px; }
+        .main-title { font-size: 55px; line-height: 1.1; margin-bottom: 20px; font-weight: 700; }
+        .hero-text { font-size: 16px; margin-bottom: 30px; line-height: 1.6; color: #ddd; }
+        
+        .dots { display: flex; gap: 10px; margin-top: 40px; }
+        .dot { width: 12px; height: 12px; background-color: #555; border-radius: 50%; }
+        .dot.active { background-color: var(--amarillo); }
+
+        /* --- NUEVA SECCIÓN: PLATILLOS DESTACADOS --- */
+        .featured-dishes {
+            padding: 100px 0;
+            background-color: #1a1a1a;
+        }
+
+        /* Grid de 2 columnas */
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Tarjeta Clickeable (el enlace envuelve todo) */
+        .dish-link {
+            text-decoration: none;
+            color: white;
+            display: block; /* Importante para que el enlace ocupe todo el espacio */
+            transition: transform 0.3s ease;
+        }
+
+        .dish-link:hover {
+            transform: translateY(-10px); /* Efecto sutil al pasar el mouse */
+        }
+
+        .dish-card {
+            background-color: var(--oscuro-card);
+            border-radius: 15px;
+            overflow: hidden; /* Para que la imagen respete los bordes redondeados */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .dish-img-container {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .dish-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajuste perfecto de la imagen */
+            transition: 0.5s ease;
+        }
+
+        .dish-link:hover .dish-img-container img {
+            transform: scale(1.1); /* Efecto de zoom en la imagen al hacer hover en la tarjeta */
+        }
+
+        .dish-info {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dish-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dish-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .card-btn {
+            background-color: var(--amarillo);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            align-self: flex-start; /* Alineado a la izquierda */
+        }
+
+        /* Mantenemos el div vacío de 1000px al final */
+        .extra-space { height: 1000px; background-color: #1a1a1a; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="inicio.html" class="logo">Ali & Val</a>
+            <nav class="nav-links">
+                <a href="inicio.html">INICIO</a>
+                <a href="menu.html">MENÚ</a>
+                <a href="cotizar.html" class="btn-yellow">COTIZAR</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <h1 class="main-title">Banquetes Gourmet y<br> Almuerzos <br>Individuales</h1>
+            <p class="hero-text">
+                Tu almuerzo de todos los días, listo para llevar.
+                Todo para ese día tan especial lo tenemos nosotros. Calidad, sabor y puntualidad en cada uno de nuestros eventos.
+            </p>
+            <a href="cotizar.html" class="btn-yellow hero-btn" style="text-decoration: none; padding: 12px 30px; font-size: 15px;">Pide Tu Presupuesto</a>
+            
+            <div class="dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-dishes">
+        <div class="container">
+            <div class="dishes-grid">
+
+                <a href="cotizar.html" class="dish-link">
+                    <div class="dish-card">
+                        <div class="dish-img-container">
+                            <img src="imagenes/chilaquiles.jpeg" alt="Chilaquiles Verdes">
+                        </div>
+                        <div class="dish-info">
+                            <div>
+                                <h3>Chilaquiles</h3>
+                                <p>¡Pídelos hoy! Disfruta nuestros chilaquiles en la salsa que más te guste.</p>
+                            </div>
+                            <button class="card-btn">Cotizar</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="menu.html" class="dish-link">
+                    <div class="dish-card">
+                        <div class="dish-img-container">
+                            <img src="imagenes/variado.jpeg" alt="   ">
+                        </div>
+                        <div class="dish-info">
+                            <div>
+                                <h3>🍴 Variedad que te sorprende</h3>
+                                <p>Descubre diferentes opciones pensadas para cada gusto.</p>
+                            </div>
+                            <button class="card-btn">Ver Menú</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="envio">
+        <div class="envios">
+            <img src="imagenes/deliveri.png" alt="">
+            <h3>Hacemos envíos</h3>
+            <p>Recibe tu pedido en la puerta de tu casa</p>
+        </div>
+        <div class="envios">
+            <img src="imagenes/tiempo.png" alt="">
+            <h3>Tiempos de entrega</h3>
+            <p>Entregas rápidas para mantener el sabor y temperatura.</p>
+        </div>
+    </section>
+
+<section class="galeria-home">
+    <div class="galeria-container">
+        <div class="galeria-item">
+    <a href="menu.html">
+    <img src="imagenes/aguacate.jpeg" alt="Platillo 1">
+    </a>
+</div>
+
+<div class="galeria-item">
+    <a href="menu.html">
+    <img src="imagenes/costilla.jpeg" alt="Platillo 2">
+    </a>
+</div>
+
+<div class="galeria-item">
+    <a href="menu.html">
+    <img src="imagenes/milanesa.jpeg" alt="Platillo 3">
+    </a>
+</div>
+</div>
+</section>
+<footer class="footer-site">
+    <div class="container footer-grid">
+        
+        <div class="footer-info">
+            <a href="inicio.html" class="logo">Ali & Val</a>
+            <p>Gourmet Delights en la CDMX. Llevamos el sabor y la elegancia a tu mesa.</p>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Contáctanos</h3>
+            
+            <p><i class="fas fa-map-marker-alt"></i> Ciudad de México, CDMX</p>
+            
+            <div class="social-icons">
+                <a href="https://wa.me/525582190166" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/valeriiestada/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1DZYSe21V3/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ali & Val | Gourmet Delights - Todos los derechos reservados.</p><br><a href="https://www.instagram.com/0_cristtian/" target="_blank" style="text-decoration:none; color: #555; font-size: 6px;">@0_cristtian</a>
+
+    </div>
+</footer>
+</body>
+</html>

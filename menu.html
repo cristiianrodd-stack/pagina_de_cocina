@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú | Ali & Val</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET Y VARIABLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --amarillo: #ffbe33;
+            --amarillo-oscuro: #d4a017;
+            --oscuro: #0c0c0c;
+            --negro-puro: #000;
+        }
+        body { font-family: 'Poppins', sans-serif; background-color: #ffffff; color: #1a1a1a; scroll-behavior: smooth; }
+
+        /* --- NAVBAR UNIFICADA (IDÉNTICA A INICIO) --- */
+        .navbar {
+            background-color: var(--negro-puro);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { 
+            color: white; 
+            font-size: 30px; 
+            font-weight: 700; 
+            font-style: italic; 
+            text-decoration: none; 
+            letter-spacing: 1px;
+        }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600;
+            text-transform: uppercase; 
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--amarillo); }
+        
+        /* Botón Cotizar Resaltado en Navbar */
+        .btn-nav-cotizar {
+            background-color: var(--amarillo);
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700 !important;
+            transition: 0.3s;
+        }
+        .btn-nav-cotizar:hover {
+            background-color: white;
+            color: var(--negro-puro) !important;
+        }
+
+        /* --- DISEÑO DEL MENÚ --- */
+        .menu-header { margin-top: 140px; text-align: center; padding: 20px 0; }
+        .menu-header h1 { font-size: 45px; text-transform: uppercase; letter-spacing: 5px; font-weight: 400; margin: 0; }
+
+        /* Categorías con fotos circulares */
+        .categorias-decorativas {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0 60px;
+            flex-wrap: wrap;
+        }
+        .cat-item { text-align: center; cursor: pointer; }
+        .cat-item img {
+            width: 85px; height: 85px; border-radius: 50%; object-fit: cover;
+            border: 2px solid #eee; padding: 4px; transition: transform 0.4s ease, border-color 0.4s;
+        }
+        .cat-item p { font-size: 10px; text-transform: uppercase; margin-top: 10px; letter-spacing: 2px; color: #999; font-weight: 600; }
+        .cat-item:hover img { transform: scale(1.15); border-color: var(--amarillo); }
+
+        /* Listado estilo carta */
+        .menu-grid { max-width: 750px; margin: 0 auto; padding: 0 20px 50px; }
+        .seccion-titulo { 
+            text-align: center; font-size: 16px; letter-spacing: 4px; 
+            text-transform: uppercase; margin: 60px 0 40px; 
+            border-bottom: 1px solid #f0f0f0; padding-bottom: 15px; 
+            color: var(--amarillo-oscuro);
+            font-weight: 700;
+        }
+
+        .platillo { margin-bottom: 30px; }
+        .platillo-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .platillo-nombre { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .platillo-puntos { flex: 1; border-bottom: 1px dotted #ddd; margin: 0 12px; }
+        .platillo-precio { font-size: 14px; color: #444; font-weight: 600; }
+
+        /* --- BOTÓN FINAL COTIZAR --- */
+        .cotizar-container { text-align: center; margin-top: 60px; padding-bottom: 80px; }
+        .btn-cotizar-final {
+            background-color: var(--amarillo);
+            color: white;
+            text-decoration: none;
+            padding: 15px 45px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            display: inline-block;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .btn-cotizar-final:hover {
+            background-color: #000;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- FOOTER --- */
+        footer { background: var(--negro-puro); color: #555; text-align: center; padding: 40px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+
+        @media (max-width: 768px) {
+            .menu-header h1 { font-size: 32px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 11px; }
+            .categorias-decorativas { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="inicio.html" class="logo">Ali & Val</a>
+            <nav class="nav-links">
+                <a href="inicio.html">INICIO</a>
+                <a href="menu.html">MENÚ</a>
+                <a href="cotizar.html" class="btn-nav-cotizar">COTIZAR</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="menu-header">
+        <h1>Nuestra Carta</h1>
+    </div>
+
+    <div class="categorias-decorativas">
+        <div class="cat-item">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=200" alt="Cortes">
+            <p>Cortes</p>
+        </div>
+        <div class="cat-item">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=200" alt="Ensaladas">
+            <p>Ensaladas</p>
+        </div>
+        <div class="cat-item">
+            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=200" alt="Mexicana">
+            <p>Mexicana</p>
+        </div>
+        <div class="cat-item">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=200" alt="Especiales">
+            <p>Especiales</p>
+        </div>
+    </div>
+
+    <main class="menu-grid">
+        <div class="seccion-titulo">Platillos Principales</div>
+        
+        <div class="platillo">
+            <div class="platillo-header">
+                <span class="platillo-nombre">Arrachera Especial</span>
+                <span class="platillo-puntos"></span>
+                <span class="platillo-precio">$90</span>
+            </div>
+        </div>
+
+        <div class="platillo">
+            <div class="platillo-header">
+                <span class="platillo-nombre">Pechugas Rellenas</span>
+                <span class="platillo-puntos"></span>
+                <span class="platillo-precio">$90</span>
+            </div>
+        </div>
+
+        <div class="platillo">
+            <div class="platillo-header">
+                <span class="platillo-nombre">Pechuga Empanizada</span>
+                <span class="platillo-puntos"></span>
+                <span class="platillo-precio">$85</span>
+            </div>
+        </div>
+
+        <div class="platillo">
+            <div class="platillo-header">
+                <span class="platillo-nombre">Ensalada de la Casa</span>
+                <span class="platillo-puntos"></span>
+                <span class="platillo-precio">$70</span>
+            </div>
+        </div>
+
+        <div class="seccion-titulo">Especialidades</div>
+
+        <div class="platillo"><div class="platillo-header"><span class="platillo-nombre">Taquizas a Domicilio</span><span class="platillo-puntos"></span><span class="platillo-precio">Cotizar</span></div></div>
+        <div class="platillo"><div class="platillo-header"><span class="platillo-nombre">Birria Estilo Jalisco</span><span class="platillo-puntos"></span><span class="platillo-precio">Cotizar</span></div></div>
+        <div class="platillo"><div class="platillo-header"><span class="platillo-nombre">Pozole Tradicional</span><span class="platillo-puntos"></span><span class="platillo-precio">Cotizar</span></div></div>
+
+        <div class="seccion-titulo">Otros Servicios</div>
+        <div class="platillo"><div class="platillo-header"><span class="platillo-nombre">Menú del día (3 tiempos)</span><span class="platillo-puntos"></span><span class="platillo-precio">$85</span></div></div>
+        <div class="platillo"><div class="platillo-header"><span class="platillo-nombre">Entradas y Snacks</span><span class="platillo-puntos"></span></div></div>
+        <div class="platillo"><div class="platillo-header"><span class="platillo-nombre">Menú Infantil</span><span class="platillo-puntos"></span></div></div>
+
+        <div class="cotizar-container">
+            <a href="cotizar.html" class="btn-cotizar-final">Cotizar ahora</a>
+        </div>
+    </main>
+
+    <footer>
+        Ali & Val Gourmet Delights | 2026 | Ciudad de México
+    </footer>
+
+</body>
+</html>

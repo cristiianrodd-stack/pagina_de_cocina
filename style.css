@@ -1,0 +1,336 @@
+/* --- CONFIGURACIÓN BASE --- */
+body, h1, p, a, h3 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --color-amarillo: #ffbe33;
+    --color-oscuro: #0c0c0c;
+    --color-negro-puro: #000;
+}
+
+body {
+    background-color: var(--color-negro-puro);
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    background-color: var(--color-negro-puro);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    font-style: italic;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--color-amarillo);
+}
+
+/* --- HERO --- */
+.hero {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.main-title {
+    font-size: 65px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    max-width: 500px;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* --- BOTONES --- */
+.btn-yellow {
+    background-color: var(--color-amarillo);
+    color: black;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-yellow:hover {
+    background-color: white;
+}
+
+/* --- ENVÍO (CON ANIMACIÓN) --- */
+@keyframes flotarLento {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.envio {
+    background-color: var(--color-oscuro);
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.envios {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.envios img {
+    height: 200px;
+    filter: brightness(0) invert(1);
+    animation: flotarLento 4s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+.envios h3 {
+    color: var(--color-amarillo);
+    margin-bottom: 10px;
+}
+
+/* --- PLATILLOS (HORIZONTAL) --- */
+.featured-dishes {
+    padding: 80px 0;
+}
+
+.dishes-grid {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    flex-wrap: wrap; /* Importante para móviles */
+}
+
+.dish-link { text-decoration: none; color: inherit; }
+
+.dish-card {
+    background-color: #161616;
+    width: 380px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.dish-card:hover {
+    border-color: var(--color-amarillo);
+    transform: translateY(-10px);
+}
+
+.dish-img-container { 
+    height: 250px; 
+    overflow: hidden; 
+}
+
+.dish-img-container img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+.dish-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-btn {
+    background-color: var(--color-amarillo);
+    border: none; padding: 10px 20px; font-weight: 700;
+    cursor: pointer; border-radius: 5px; margin-top: 15px;
+}
+
+/* --- GALERÍA  --- */
+.galeria-home { 
+    padding: 60px 0; 
+}
+
+.galeria-container {
+    display: flex; 
+    justify-content: center; 
+    gap: 66px; 
+    flex-wrap: wrap;
+}
+
+.galeria-item {
+    width: 300px; 
+    height: 400px; 
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+.galeria-item img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    /* ELIMINAMOS EL FILTRO GRAYSCALE */
+    filter: none; 
+    transition: 0.5s;
+}
+
+.galeria-item img:hover { 
+    /* Solo dejamos el zoom para que se vea interactivo */
+    transform: scale(1.05); 
+}
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .envio, .dishes-grid { flex-direction: column; align-items: center; }
+    .main-title { font-size: 40px; }
+}
+
+/* redes sociales y contacto  */
+/* --- FOOTER (CONTACTO Y REDES) --- */
+.footer-site {
+    background-color: #050505; /* Un negro más profundo */
+    padding: 140px 0 0 0;
+    color: white;
+    border-top: 2px solid #1a1a1a;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    padding-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.footer-info, .footer-contact, .footer-social {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-info .logo {
+    display: block;
+    margin-bottom: 50px;
+}
+
+.footer-info p {
+    color: #999;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.footer-contact h3, .footer-social h3 {
+    color: #ffbe33;
+    font-size: 25px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-contact p {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact i {
+    color: #ea9797; /* Iconos en amarillo */
+    width: 20px;
+}
+
+/* Iconos de Redes Sociales */
+.social-icons {
+    display: flex;
+    gap: 60px;
+}
+
+.social-icons a {
+    color: white;
+    background-color: #1a1a1a;
+    width: 60px; /* Tamaño del círculo */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 60px; /* Ajustado para que quepa bien dentro del círculo */
+    transition: all 0.3s ease;
+}
+
+
+/* Barra inferior de Copyright */
+.footer-bottom {
+    background-color: #000;
+    text-align: center;
+    padding: 25px 0;
+    border-top: 1px solid #111;
+}
+
+.footer-bottom p {
+    color: #555;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* Ajuste Móvil */
+@media (max-width: 768px) {
+    .footer-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-contact p {
+        justify-content: center;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+}
